@@ -1,6 +1,8 @@
 package com.hashimathman.gms.controller;
 
+import com.hashimathman.gms.entity.BaseModel;
 import com.hashimathman.gms.entity.Goal;
+import com.hashimathman.gms.model.GoalCreateModel;
 import com.hashimathman.gms.service.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +15,11 @@ public class GoalController {
     private GoalService goalService;
 
     @PostMapping("/api/v1/goals")
-    public Goal createGoal(@RequestBody Goal goal){
+    public Goal createGoal(@RequestBody BaseModel baseModel){
+
+        Goal goal = Goal.builder()
+                .base(baseModel)
+                .build();
         return goalService.createGoal(goal);
     }
 }
