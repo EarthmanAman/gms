@@ -43,5 +43,5 @@ public class Task {
             name = "task",
             referencedColumnName = "id"
     )
-    private List<TaskCriteria> taskCriteriaList;
+    private List<SuccessCriteria> successCriteriaList;
 }

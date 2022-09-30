@@ -38,7 +38,7 @@ public class Milestone{
             name = "milestone",
             referencedColumnName = "id"
     )
-    private List<MilestoneCriteria> milestoneCriteriaList;
+    private List<SuccessCriteria> successCriteriaList;
 
     @OneToMany(
             cascade = CascadeType.ALL

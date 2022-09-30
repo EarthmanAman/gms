@@ -31,12 +31,12 @@ public class Goal{
     private Long goalId;
 
 
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "goal",
-            referencedColumnName = "id"
-    )
-    private List<GoalCriteria> goalCriteriaList;
+//    @OneToMany(
+//            cascade = CascadeType.ALL
+//    )
+//    @JoinColumn(
+//            name = "goal",
+//            referencedColumnName = "id"
+//    )
+//    private List<SuccessCriteria> successCriteriaList;
 }

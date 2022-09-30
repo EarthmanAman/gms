@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,9 +26,14 @@ public class SuccessCriteria {
     private String title;
     private String description;
 
-    @OneToOne(
-            mappedBy = "successCriteria"
+    @ManyToOne(
+            cascade = CascadeType.ALL
     )
-    private GoalCriteria goalCriteria;
+    @JoinColumn(
+            name = "goal",
+            referencedColumnName = "id"
+    )
+    private Goal goal;
+
 }
 
