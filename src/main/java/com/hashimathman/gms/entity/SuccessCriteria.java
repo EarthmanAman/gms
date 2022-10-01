@@ -1,6 +1,7 @@
 package com.hashimathman.gms.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SuccessCriteria {
     @Id
     @SequenceGenerator(
@@ -26,5 +28,11 @@ public class SuccessCriteria {
     private String title;
     private String description;
 
+    @ManyToOne(targetEntity = Goal.class, cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "goal",
+            referencedColumnName = "id"
+    )
+    private Goal goal;
 }
 

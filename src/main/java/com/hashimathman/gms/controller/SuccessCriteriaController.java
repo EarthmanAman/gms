@@ -13,8 +13,9 @@ public class SuccessCriteriaController {
     @Autowired
     private SuccessCriteriaService successCriteriaService;
     @PostMapping("/api/v1/success")
-    public SuccessCriteria createSuccess(@RequestBody SuccessCriteria successCriteria){
-        System.out.println(successCriteria);
+    public SuccessCriteria createSuccess(@RequestBody SuccessCriteriaCreateModel successCriteriaCreateModel){
+
+        SuccessCriteria successCriteria = successCriteriaCreateModel.getSuccess();
         return successCriteriaService.createSuccessCriteria(successCriteria);
     }
 }

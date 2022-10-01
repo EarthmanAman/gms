@@ -32,11 +32,8 @@ public class Goal{
 
 
     @OneToMany(
+            mappedBy = "goal",
             cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "goal",
-            referencedColumnName = "id"
     )
     private List<SuccessCriteria> successCriteriaList;
 }

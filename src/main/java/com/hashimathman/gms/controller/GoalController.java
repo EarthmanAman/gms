@@ -17,6 +17,7 @@ public class GoalController {
     @PostMapping("/api/v1/goals")
     public Goal createGoal(@RequestBody GoalCreateModel goalCreateModel){
         BaseModel baseModel = goalCreateModel.getBase();
+
         Goal goal = Goal.builder()
                 .base(baseModel)
                 .successCriteriaList(goalCreateModel.getSuccess())
