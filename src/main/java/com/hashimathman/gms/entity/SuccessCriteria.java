@@ -26,14 +26,5 @@ public class SuccessCriteria {
     private String title;
     private String description;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "goal",
-            referencedColumnName = "id"
-    )
-    private Goal goal;
-
 }
 

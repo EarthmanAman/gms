@@ -15,10 +15,11 @@ public class GoalController {
     private GoalService goalService;
 
     @PostMapping("/api/v1/goals")
-    public Goal createGoal(@RequestBody BaseModel baseModel){
-
+    public Goal createGoal(@RequestBody GoalCreateModel goalCreateModel){
+        BaseModel baseModel = goalCreateModel.getBase();
         Goal goal = Goal.builder()
                 .base(baseModel)
+                .successCriteriaList(goalCreateModel.getSuccess())
                 .build();
         return goalService.createGoal(goal);
     }
