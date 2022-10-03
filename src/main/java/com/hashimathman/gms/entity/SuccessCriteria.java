@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -33,6 +33,8 @@ public class SuccessCriteria {
             name = "goal",
             referencedColumnName = "id"
     )
-    private Goal goal;
+    private Optional<Goal> goal;
+
+
 }
 
