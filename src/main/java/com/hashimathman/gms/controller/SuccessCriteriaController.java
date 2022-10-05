@@ -6,10 +6,12 @@ import com.hashimathman.gms.model.SuccessCriteriaCreateModel;
 import com.hashimathman.gms.repository.GoalRepository;
 import com.hashimathman.gms.service.SuccessCriteriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,10 +23,18 @@ public class SuccessCriteriaController {
     private GoalRepository goalRepository;
     @PostMapping("/api/v1/success")
     public SuccessCriteria createSuccess(@RequestBody SuccessCriteriaCreateModel successCriteriaCreateModel){
-
-        SuccessCriteria successCriteria = successCriteriaCreateModel.getSuccess();
-        Optional<Goal> goal = goalRepository.findById(successCriteriaCreateModel.getGoal());
-        successCriteria.setGoal(goal);
+        Optional<Goal> optionalGoal = goalRepository.findById(successCriteriaCreateModel.getGoal());
+        Goal goal = optionalGoal.get();
+        SuccessCriteria successCriteria = SuccessCriteria.builder()
+                .title(successCriteriaCreateModel.getTitle())
+                .description(successCriteriaCreateModel.getDescription())
+                .goal(goal)
+                .build();
         return successCriteriaService.createSuccessCriteria(successCriteria);
+    }
+
+    @GetMapping("/api/v1/success")
+    public List<SuccessCriteria> getSuccess(){
+        return successCriteriaService.getSuccess();
     }
 }

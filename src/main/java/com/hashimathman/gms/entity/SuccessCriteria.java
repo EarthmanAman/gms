@@ -1,9 +1,7 @@
 package com.hashimathman.gms.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Optional;
@@ -28,13 +26,14 @@ public class SuccessCriteria {
     private String title;
     private String description;
 
-    @ManyToOne(targetEntity = Goal.class, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "goal",
             referencedColumnName = "id"
     )
-    private Optional<Goal> goal;
-
+    private Goal goal;
 
 }
 

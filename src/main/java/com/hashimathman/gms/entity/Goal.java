@@ -1,12 +1,14 @@
 package com.hashimathman.gms.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
+import org.hibernate.annotations.LazyGroup;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -30,10 +32,12 @@ public class Goal{
     @Column(name = "id")
     private Long goalId;
 
-
+    
+    @ToString.Exclude
     @OneToMany(
             mappedBy = "goal",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
     private List<SuccessCriteria> successCriteriaList;
 }

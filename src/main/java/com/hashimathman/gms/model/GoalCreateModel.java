@@ -16,5 +16,5 @@ import java.util.List;
 @NoArgsConstructor
 public class GoalCreateModel {
     private BaseModel base;
-    private List<SuccessCriteria> success;
+    private List<SuccessCriteria> successCriteriaList;
 }

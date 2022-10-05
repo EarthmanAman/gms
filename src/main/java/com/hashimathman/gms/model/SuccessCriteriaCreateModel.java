@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class SuccessCriteriaCreateModel {
-    private SuccessCriteria success;
+    private String title;
+    private String description;
     private Long goal;
     private Long milestone;
     private Long task;
