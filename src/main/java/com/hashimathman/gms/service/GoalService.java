@@ -8,4 +8,6 @@ public interface GoalService {
     public Goal createGoal(Goal goal);
 
     public List<Goal> getGoals();
+
+    public List<Goal> filterGoals(Boolean isDone);
 }

@@ -6,10 +6,7 @@ import com.hashimathman.gms.entity.SuccessCriteria;
 import com.hashimathman.gms.model.GoalCreateModel;
 import com.hashimathman.gms.service.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,9 +28,17 @@ public class GoalController {
 
     @GetMapping("/api/v1/goals")
     public List<Goal> getGoals(){
-        System.out.println("heloooooooo");
         List<Goal> goals = goalService.getGoals();
-        System.out.println(goals);
         return goals;
+    }
+
+    @GetMapping("/api/v1/goals/filter")
+    public List<Goal> filterGoals(@RequestParam("done") String done){
+        Boolean isDone = true;
+        if (done.equals("false")) {
+            isDone = false;
+        }
+
+        return goalService.filterGoals(isDone);
     }
 }

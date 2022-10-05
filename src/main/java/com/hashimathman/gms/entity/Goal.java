@@ -32,12 +32,13 @@ public class Goal{
     @Column(name = "id")
     private Long goalId;
 
-    
+
     @ToString.Exclude
     @OneToMany(
             mappedBy = "goal",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @JsonManagedReference
     private List<SuccessCriteria> successCriteriaList;
 }

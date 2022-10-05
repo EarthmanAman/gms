@@ -26,9 +26,9 @@ public class SuccessCriteria {
     private String title;
     private String description;
 
-    @JsonIgnore
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+//    @ToString.Exclude
+    @ManyToOne(targetEntity = Goal.class, fetch = FetchType.LAZY)
     @JoinColumn(
             name = "goal",
             referencedColumnName = "id"

@@ -20,4 +20,9 @@ public class GoalServiceImpl implements GoalService {
     public List<Goal> getGoals() {
         return goalRepository.findAll();
     }
+
+    @Override
+    public List<Goal> filterGoals(Boolean isDone) {
+        return goalRepository.findByBaseIsDone(isDone);
+    }
 }
