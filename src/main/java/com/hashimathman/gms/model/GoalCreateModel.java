@@ -1,6 +1,7 @@
 package com.hashimathman.gms.model;
 
 import com.hashimathman.gms.entity.BaseModel;
+import com.hashimathman.gms.entity.Milestone;
 import com.hashimathman.gms.entity.SuccessCriteria;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +18,5 @@ import java.util.List;
 public class GoalCreateModel {
     private BaseModel base;
     private List<SuccessCriteria> successCriteriaList;
+//    private List<Milestone> milestoneList;
 }

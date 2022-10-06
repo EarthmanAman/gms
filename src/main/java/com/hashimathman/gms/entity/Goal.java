@@ -39,6 +39,15 @@ public class Goal{
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference
+
     private List<SuccessCriteria> successCriteriaList;
+
+    @ToString.Exclude
+    @OneToMany(
+            mappedBy = "goal",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+
+    private List<Milestone> milestoneList;
 }

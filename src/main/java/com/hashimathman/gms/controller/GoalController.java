@@ -2,11 +2,13 @@ package com.hashimathman.gms.controller;
 
 import com.hashimathman.gms.entity.BaseModel;
 import com.hashimathman.gms.entity.Goal;
+import com.hashimathman.gms.entity.Milestone;
 import com.hashimathman.gms.entity.SuccessCriteria;
 import com.hashimathman.gms.model.GoalCreateModel;
 import com.hashimathman.gms.service.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -17,13 +19,21 @@ public class GoalController {
     @Autowired
     private GoalService goalService;
 
-    @PostMapping("/api/v1/goals")
+    @PostMapping(value = "/api/v1/goals")
     public Goal createGoal(@RequestBody Goal goal){
+        System.out.println(goal);
         Goal goal1 = new Goal();
         goal1.setSuccessCriteriaList(goal.getSuccessCriteriaList());
+        goal1.setMilestoneList(goal.getMilestoneList());
         goal1.setBase(goal.getBase());
         for (SuccessCriteria successCriteria : goal.getSuccessCriteriaList()) {
             successCriteria.setGoal(goal1);
+        }
+        for (Milestone milestone : goal.getMilestoneList()) {
+            milestone.setGoal(goal1);
+            for(SuccessCriteria successCriteria : milestone.getSuccessCriteriaList()){
+                successCriteria.setMilestone(milestone);
+            }
         }
         return goalService.createGoal(goal1);
     }

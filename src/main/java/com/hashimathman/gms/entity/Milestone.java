@@ -1,8 +1,12 @@
 package com.hashimathman.gms.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,20 +35,37 @@ public class Milestone{
     @Embedded
     private BaseModel base;
 
+    @ToString.Exclude
     @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "milestone",
-            referencedColumnName = "id"
+            mappedBy = "milestone",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
     private List<SuccessCriteria> successCriteriaList;
 
+    @ToString.Exclude
     @OneToMany(
-            cascade = CascadeType.ALL
+            mappedBy = "parent",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
+    @JsonIgnore
+    private List<Milestone> children;
+
+    @JsonIgnore
+    @ManyToOne(targetEntity = Milestone.class, fetch = FetchType.LAZY)
     @JoinColumn(
+            name = "parent",
             referencedColumnName = "id"
     )
-    private List<Milestone> precedence;
+    private Milestone parent;
+
+
+    @JsonIgnore
+    @ManyToOne(targetEntity = Goal.class, fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "goal",
+            referencedColumnName = "id"
+    )
+    private Goal goal;
 }

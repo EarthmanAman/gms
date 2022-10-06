@@ -35,5 +35,13 @@ public class SuccessCriteria {
     )
     private Goal goal;
 
+    @JsonIgnore
+    @ManyToOne(targetEntity = Milestone.class, fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "milestone",
+            referencedColumnName = "id"
+    )
+    private Milestone milestone;
+
 }
 
