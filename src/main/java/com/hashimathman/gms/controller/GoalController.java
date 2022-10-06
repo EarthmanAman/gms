@@ -6,8 +6,10 @@ import com.hashimathman.gms.entity.SuccessCriteria;
 import com.hashimathman.gms.model.GoalCreateModel;
 import com.hashimathman.gms.service.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -40,5 +42,43 @@ public class GoalController {
         }
 
         return goalService.filterGoals(isDone);
+    }
+
+    @GetMapping("/api/v1/goals/month")
+    public List<Goal> goalsEndInMonth(@RequestParam("done") String done, @RequestParam("date")
+                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date){
+
+        Boolean isDone = true;
+        if (done.equals("false")) {
+            isDone = false;
+        } else if (done.equals("all")) {
+            return goalService.goalsEndInMonthAll(date);
+        }
+        return goalService.goalsEndInMonth(isDone, date);
+    }
+
+    @GetMapping("api/v1/goals/start_date")
+    public List<Goal> goalsAfterStartDate(@RequestParam("done") String done,
+                                          @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date){
+        Boolean isDone = true;
+        if (done.equals("false")) {
+            isDone = false;
+        } else if (done.equals("all")) {
+            return goalService.goalsAfterStartDateAll(date);
+        }
+        return goalService.goalsAfterStartDate(isDone, date);
+    }
+
+    @GetMapping("/api/v1/goals/start_date/between")
+    public List<Goal> goalsStartDateBetween(@RequestParam("done") String done,
+                                            @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start,
+                                            @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end){
+        Boolean isDone = true;
+        if(done.equals("false")){
+            isDone = false;
+        } else if (done.equals("all")) {
+            return goalService.goalsStartDateBetweenAll(start, end);
+        }
+        return  goalService.goalsStartDateBetween(isDone, start, end);
     }
 }
