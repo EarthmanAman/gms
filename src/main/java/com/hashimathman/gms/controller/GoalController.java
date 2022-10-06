@@ -21,7 +21,6 @@ public class GoalController {
 
     @PostMapping(value = "/api/v1/goals")
     public Goal createGoal(@RequestBody Goal goal){
-        System.out.println(goal);
         Goal goal1 = new Goal();
         goal1.setSuccessCriteriaList(goal.getSuccessCriteriaList());
         goal1.setMilestoneList(goal.getMilestoneList());

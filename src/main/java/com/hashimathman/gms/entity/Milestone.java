@@ -44,24 +44,25 @@ public class Milestone{
     private List<SuccessCriteria> successCriteriaList;
 
     @ToString.Exclude
-    @OneToMany(
-            mappedBy = "parent",
+    @ManyToMany(
+            mappedBy = "parents",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @JsonIgnore
     private List<Milestone> children;
 
     @JsonIgnore
-    @ManyToOne(targetEntity = Milestone.class, fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "parent",
-            referencedColumnName = "id"
+    @ToString.Exclude
+    @ManyToMany(targetEntity = Milestone.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "milestone_parents",
+            joinColumns = @JoinColumn(name = "children_id"),
+            inverseJoinColumns = @JoinColumn(name = "parents_id")
     )
-    private Milestone parent;
+    private List<Milestone> parents;
 
 
     @JsonIgnore
+    @ToString.Exclude
     @ManyToOne(targetEntity = Goal.class, fetch = FetchType.LAZY)
     @JoinColumn(
             name = "goal",
