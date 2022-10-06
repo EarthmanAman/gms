@@ -56,4 +56,14 @@ public class GoalServiceImpl implements GoalService {
     public List<Goal> goalsStartDateBetween(Boolean isDone, Date start, Date end) {
         return goalRepository.findByBaseIsDoneAndBaseStartDateBetween(isDone, start, end);
     }
+
+    @Override
+    public List<Goal> goalsEndDateBetweenAll(Date start, Date end) {
+        return goalRepository.findByBaseEndDateBetween(start, end);
+    }
+
+    @Override
+    public List<Goal> goalsEndDateBetween(Boolean isDone, Date start, Date end) {
+        return goalRepository.findByBaseIsDoneAndBaseEndDateBetween(isDone, start, end);
+    }
 }

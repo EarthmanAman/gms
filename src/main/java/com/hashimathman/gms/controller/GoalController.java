@@ -81,4 +81,17 @@ public class GoalController {
         }
         return  goalService.goalsStartDateBetween(isDone, start, end);
     }
+
+    @GetMapping("/api/v1/goals/end_date/between")
+    public List<Goal> goalsEndDateBetween(@RequestParam("done") String done,
+                                            @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date start,
+                                            @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date end){
+        Boolean isDone = true;
+        if(done.equals("false")){
+            isDone = false;
+        } else if (done.equals("all")) {
+            return goalService.goalsEndDateBetweenAll(start, end);
+        }
+        return  goalService.goalsEndDateBetween(isDone, start, end);
+    }
 }
