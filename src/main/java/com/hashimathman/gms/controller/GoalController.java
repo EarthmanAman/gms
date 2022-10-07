@@ -103,4 +103,9 @@ public class GoalController {
         }
         return  goalService.goalsEndDateBetween(isDone, start, end);
     }
+
+    @PutMapping("/api/v1/goals/{id}")
+    public Goal updateGoal(@PathVariable("id") Long id, @RequestBody Goal goal){
+        return goalService.updateGoal(id, goal);
+    }
 }

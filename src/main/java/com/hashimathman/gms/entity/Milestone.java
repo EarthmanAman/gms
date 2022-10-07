@@ -43,6 +43,7 @@ public class Milestone{
     )
     private List<SuccessCriteria> successCriteriaList;
 
+    @JsonIgnore
     @ManyToMany(
             mappedBy = "parents",
             cascade = CascadeType.ALL,
@@ -50,7 +51,7 @@ public class Milestone{
     )
     private List<Milestone> children;
 
-    @JsonIgnore
+
     @ManyToMany(targetEntity = Milestone.class, fetch = FetchType.LAZY)
     @JoinTable(name = "milestone_parents",
             joinColumns = @JoinColumn(name = "children_id"),
