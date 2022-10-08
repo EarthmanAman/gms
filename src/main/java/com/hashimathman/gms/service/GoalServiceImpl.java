@@ -72,12 +72,9 @@ public class GoalServiceImpl implements GoalService {
 
     @Override
     public Goal updateGoal(Long id, Goal goal) {
-        System.out.println(goal);
         Goal instance = goalRepository.findById(id).get();
         BaseModel base = new BaseModel();
-        System.out.println(Objects.nonNull(goal.getBase().getStartDate()));
         if(Objects.nonNull(goal.getBase().getStartDate())){
-            System.out.println("hereeeeeeeeeeeeeeeeeeeee");
             base.setStartDate(goal.getBase().getStartDate());
         }else {
             base.setStartDate(instance.getBase().getStartDate());

@@ -39,7 +39,8 @@ public class Milestone{
     @OneToMany(
             mappedBy = "milestone",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
     private List<SuccessCriteria> successCriteriaList;
 

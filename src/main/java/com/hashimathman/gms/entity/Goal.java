@@ -37,7 +37,8 @@ public class Goal{
     @OneToMany(
             mappedBy = "goal",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
 
     private List<SuccessCriteria> successCriteriaList;
@@ -46,7 +47,8 @@ public class Goal{
     @OneToMany(
             mappedBy = "goal",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
 
     private List<Milestone> milestoneList;
