@@ -72,26 +72,38 @@ public class GoalServiceImpl implements GoalService {
 
     @Override
     public Goal updateGoal(Long id, Goal goal) {
+        System.out.println(goal);
         Goal instance = goalRepository.findById(id).get();
         BaseModel base = new BaseModel();
+        System.out.println(Objects.nonNull(goal.getBase().getStartDate()));
         if(Objects.nonNull(goal.getBase().getStartDate())){
             System.out.println("hereeeeeeeeeeeeeeeeeeeee");
             base.setStartDate(goal.getBase().getStartDate());
+        }else {
+            base.setStartDate(instance.getBase().getStartDate());
         }
 
         if(Objects.nonNull(goal.getBase().getEndDate()) ){
             base.setEndDate(goal.getBase().getEndDate());
+        }else {
+            base.setEndDate(instance.getBase().getEndDate());
         }
 
         if(Objects.nonNull(goal.getBase().getTitle()) && !"".equalsIgnoreCase(goal.getBase().getTitle())){
             base.setTitle(goal.getBase().getTitle());
+        }else {
+            base.setTitle(instance.getBase().getTitle());
         }
         if(Objects.nonNull(goal.getBase().getDescription()) && !"".equalsIgnoreCase(goal.getBase().getDescription())){
-            base.setTitle(goal.getBase().getDescription());
+            base.setDescription(goal.getBase().getDescription());
+        }else{
+            base.setDescription(instance.getBase().getDescription());
         }
 
         if(Objects.nonNull(goal.getBase().getIsDone()) && !"".equals(goal.getBase().getIsDone())){
             base.setIsDone(goal.getBase().getIsDone());
+        }else {
+            base.setIsDone(instance.getBase().getIsDone());
         }
 
         instance.setBase(base);
