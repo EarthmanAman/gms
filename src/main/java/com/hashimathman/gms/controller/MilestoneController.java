@@ -8,10 +8,7 @@ import com.hashimathman.gms.repository.GoalRepository;
 import com.hashimathman.gms.repository.MilestoneRepository;
 import com.hashimathman.gms.service.MilestoneService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +64,11 @@ public class MilestoneController {
         return milestoneService.createMilestone(milestone1);
     }
 
+
+    @PutMapping("/api/v1/milestone/{id}")
+    public Milestone updateMilestone(@PathVariable("id") Long id, @RequestBody MilestoneCreateModel milestone){
+        return milestoneService.updateMilestone(id, milestone);
+    }
     @GetMapping("/api/v1/milestone")
     public List<Milestone> getMilestone(){
         return milestoneService.getMilestone();
