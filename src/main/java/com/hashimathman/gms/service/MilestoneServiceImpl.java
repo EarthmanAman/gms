@@ -3,12 +3,14 @@ package com.hashimathman.gms.service;
 import com.hashimathman.gms.entity.BaseModel;
 import com.hashimathman.gms.entity.Goal;
 import com.hashimathman.gms.entity.Milestone;
+import com.hashimathman.gms.model.ChildMilestoneCreateModel;
 import com.hashimathman.gms.model.MilestoneCreateModel;
 import com.hashimathman.gms.repository.GoalRepository;
 import com.hashimathman.gms.repository.MilestoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -86,5 +88,21 @@ public class MilestoneServiceImpl implements MilestoneService{
     @Override
     public void deleteMilestone(Long id) {
         milestoneRepository.deleteById(id);
+    }
+
+    @Override
+    public Milestone updateMilestoneParents(Long id, ChildMilestoneCreateModel childMilestoneCreateModel) {
+        List<Milestone> parents = new ArrayList<>();
+        Milestone instance = milestoneRepository.findById(id).get();
+        if(Objects.nonNull(childMilestoneCreateModel.getParents()) && childMilestoneCreateModel.getParents().size() > 0){
+            for(Long parent : childMilestoneCreateModel.getParents()){
+                Milestone milestone = milestoneRepository.findById(parent).get();
+                parents.add(milestone);
+            }
+            instance.setParents(parents);
+        }
+
+        return milestoneRepository.save(instance);
+
     }
 }

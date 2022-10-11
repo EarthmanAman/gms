@@ -3,6 +3,7 @@ package com.hashimathman.gms.controller;
 import com.hashimathman.gms.entity.Goal;
 import com.hashimathman.gms.entity.Milestone;
 import com.hashimathman.gms.entity.SuccessCriteria;
+import com.hashimathman.gms.model.ChildMilestoneCreateModel;
 import com.hashimathman.gms.model.MilestoneCreateModel;
 import com.hashimathman.gms.repository.GoalRepository;
 import com.hashimathman.gms.repository.MilestoneRepository;
@@ -78,5 +79,10 @@ public class MilestoneController {
     @GetMapping("/api/v1/milestone")
     public List<Milestone> getMilestone(){
         return milestoneService.getMilestone();
+    }
+
+    @PutMapping("/api/v1/milestone/{id}/parents")
+    public Milestone updateMilestoneParents(@PathVariable("id") Long id, @RequestBody ChildMilestoneCreateModel childMilestoneCreateModel){
+        return milestoneService.updateMilestoneParents(id, childMilestoneCreateModel);
     }
 }
