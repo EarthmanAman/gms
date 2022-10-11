@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -55,4 +56,13 @@ public class Task {
             referencedColumnName = "id"
     )
     private List<SuccessCriteria> successCriteriaList;
+
+    @JsonIgnore
+    @ToString.Exclude
+    @ManyToOne(targetEntity = Milestone.class, fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "milestone",
+            referencedColumnName = "id"
+    )
+    private Milestone milestone;
 }

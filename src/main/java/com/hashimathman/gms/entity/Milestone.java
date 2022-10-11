@@ -69,4 +69,14 @@ public class Milestone{
             referencedColumnName = "id"
     )
     private Goal goal;
+
+    @ToString.Exclude
+    @OneToMany(
+            mappedBy = "milestone",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+
+    private List<Task> taskList;
 }
