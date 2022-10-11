@@ -5,4 +5,6 @@ import com.hashimathman.gms.model.TaskCreateModel;
 
 public interface TaskService {
     public Task createTask(TaskCreateModel taskCreateModel);
+
+    public Task updateTask(Long id, TaskCreateModel taskCreateModel);
 }
