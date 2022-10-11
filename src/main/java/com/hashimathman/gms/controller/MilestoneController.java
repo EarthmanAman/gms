@@ -85,4 +85,9 @@ public class MilestoneController {
     public Milestone updateMilestoneParents(@PathVariable("id") Long id, @RequestBody ChildMilestoneCreateModel childMilestoneCreateModel){
         return milestoneService.updateMilestoneParents(id, childMilestoneCreateModel);
     }
+
+    @PutMapping("/api/v1/milestone/{id}/parents/remove")
+    public Milestone removeParent(@PathVariable("id") Long id, @RequestBody Long parentId){
+        return milestoneService.removeParent(id, parentId);
+    }
 }
