@@ -112,4 +112,11 @@ public class MilestoneServiceImpl implements MilestoneService{
         instance.getParents().remove(parent);
         return milestoneRepository.save(instance);
     }
+
+    @Override
+    public Milestone removeParentAll(Long id) {
+        Milestone instance = milestoneRepository.findById(id).get();
+        instance.getParents().removeAll(instance.getParents());
+        return milestoneRepository.save(instance);
+    }
 }

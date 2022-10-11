@@ -19,4 +19,6 @@ public interface MilestoneService {
     public Milestone updateMilestoneParents(Long id, ChildMilestoneCreateModel childMilestoneCreateModel);
 
     public Milestone removeParent(Long id, Long parentId);
+
+    public Milestone removeParentAll(Long id);
 }
