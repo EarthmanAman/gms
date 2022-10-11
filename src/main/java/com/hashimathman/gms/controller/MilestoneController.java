@@ -5,6 +5,7 @@ import com.hashimathman.gms.entity.Milestone;
 import com.hashimathman.gms.entity.SuccessCriteria;
 import com.hashimathman.gms.model.ChildMilestoneCreateModel;
 import com.hashimathman.gms.model.MilestoneCreateModel;
+import com.hashimathman.gms.model.RemoveParentModel;
 import com.hashimathman.gms.repository.GoalRepository;
 import com.hashimathman.gms.repository.MilestoneRepository;
 import com.hashimathman.gms.service.MilestoneService;
@@ -87,8 +88,8 @@ public class MilestoneController {
     }
 
     @PutMapping("/api/v1/milestone/{id}/parents/remove")
-    public Milestone removeParent(@PathVariable("id") Long id, @RequestBody Long parentId){
-        return milestoneService.removeParent(id, parentId);
+    public Milestone removeParent(@PathVariable("id") Long id, @RequestBody RemoveParentModel parent){
+        return milestoneService.removeParent(id, parent);
     }
 
     @PutMapping("/api/v1/milestone/{id}/parents/remove/all")

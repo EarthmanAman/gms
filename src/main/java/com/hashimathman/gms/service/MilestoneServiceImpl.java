@@ -5,6 +5,7 @@ import com.hashimathman.gms.entity.Goal;
 import com.hashimathman.gms.entity.Milestone;
 import com.hashimathman.gms.model.ChildMilestoneCreateModel;
 import com.hashimathman.gms.model.MilestoneCreateModel;
+import com.hashimathman.gms.model.RemoveParentModel;
 import com.hashimathman.gms.repository.GoalRepository;
 import com.hashimathman.gms.repository.MilestoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,10 +107,10 @@ public class MilestoneServiceImpl implements MilestoneService{
     }
 
     @Override
-    public Milestone removeParent(Long id, Long parentId) {
+    public Milestone removeParent(Long id, RemoveParentModel parent) {
         Milestone instance = milestoneRepository.findById(id).get();
-        Milestone parent = milestoneRepository.findById(parentId).get();
-        instance.getParents().remove(parent);
+        Milestone parent1 = milestoneRepository.findById(parent.getParent()).get();
+        instance.getParents().remove(parent1);
         return milestoneRepository.save(instance);
     }
 

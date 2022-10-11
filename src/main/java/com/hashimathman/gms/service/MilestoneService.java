@@ -3,6 +3,7 @@ package com.hashimathman.gms.service;
 import com.hashimathman.gms.entity.Milestone;
 import com.hashimathman.gms.model.ChildMilestoneCreateModel;
 import com.hashimathman.gms.model.MilestoneCreateModel;
+import com.hashimathman.gms.model.RemoveParentModel;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface MilestoneService {
 
     public Milestone updateMilestoneParents(Long id, ChildMilestoneCreateModel childMilestoneCreateModel);
 
-    public Milestone removeParent(Long id, Long parentId);
+    public Milestone removeParent(Long id, RemoveParentModel parent);
 
     public Milestone removeParentAll(Long id);
 }
