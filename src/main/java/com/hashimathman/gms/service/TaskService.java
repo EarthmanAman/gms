@@ -7,4 +7,7 @@ public interface TaskService {
     public Task createTask(TaskCreateModel taskCreateModel);
 
     public Task updateTask(Long id, TaskCreateModel taskCreateModel);
+
+
+    public void deleteTask(Long id);
 }

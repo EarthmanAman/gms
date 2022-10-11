@@ -18,8 +18,14 @@ public class TaskController {
         return taskService.createTask(taskCreateModel);
     }
 
-    @PutMapping("/api/v1/tasks/{id}/parents")
+    @PutMapping("/api/v1/tasks/{id}")
     public Task updateTask(@PathVariable("id") Long id, @RequestBody TaskCreateModel taskCreateModel){
         return taskService.updateTask(id, taskCreateModel);
+    }
+
+    @DeleteMapping("/api/v1/tasks/{id}")
+    public String deleteTask(@PathVariable("id") Long id){
+        taskService.deleteTask(id);
+        return "Deleted successfully";
     }
 }
