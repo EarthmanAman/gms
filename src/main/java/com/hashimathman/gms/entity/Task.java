@@ -1,5 +1,6 @@
 package com.hashimathman.gms.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,14 +28,24 @@ public class Task {
     )
     private Long taskId;
 
-    @OneToMany(
-            cascade = CascadeType.ALL
+    @Embedded
+    private BaseModel base;
+
+    @JsonIgnore
+    @ManyToMany(
+            mappedBy = "parents",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
-    @JoinColumn(
-            name = "subtask",
-            referencedColumnName = "id"
+    private List<Task> children;
+
+
+    @ManyToMany(targetEntity = Task.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "task_parents",
+            joinColumns = @JoinColumn(name = "children_id"),
+            inverseJoinColumns = @JoinColumn(name = "parents_id")
     )
-    private List<Task> subtasks;
+    private List<Task> parents;
 
     @OneToMany(
             cascade = CascadeType.ALL
