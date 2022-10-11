@@ -64,6 +64,13 @@ public class MilestoneServiceImpl implements MilestoneService{
             }else {
                 base.setDescription(instance.getBase().getDescription());
             }
+
+            if(Objects.nonNull(milestone.getBase().getIsDone())){
+                base.setIsDone(milestone.getBase().getIsDone());
+            }else {
+                base.setIsDone(instance.getBase().getIsDone());
+            }
+            base.setCreatedDate(instance.getBase().getCreatedDate());
             instance.setBase(base);
         }
 
