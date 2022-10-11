@@ -106,4 +106,9 @@ public class GoalServiceImpl implements GoalService {
         instance.setBase(base);
         return goalRepository.save(instance);
     }
+
+    @Override
+    public void deleteGoal(Long id) {
+        goalRepository.deleteById(id);
+    }
 }

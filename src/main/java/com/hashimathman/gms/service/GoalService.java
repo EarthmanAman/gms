@@ -29,4 +29,6 @@ public interface GoalService {
     public List<Goal> goalsEndDateBetween(Boolean isDone, Date start, Date end);
 
     public Goal updateGoal(Long id, Goal goal);
+
+    public void deleteGoal(Long id);
 }

@@ -108,4 +108,10 @@ public class GoalController {
     public Goal updateGoal(@PathVariable("id") Long id, @RequestBody Goal goal){
         return goalService.updateGoal(id, goal);
     }
+    
+    @DeleteMapping("/api/v1/goals/{id}")
+    public String deleteGoal(@PathVariable("id") Long id){
+        goalService.deleteGoal(id);
+        return "Deleted Successfully";
+    }
 }
