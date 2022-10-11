@@ -69,6 +69,12 @@ public class MilestoneController {
     public Milestone updateMilestone(@PathVariable("id") Long id, @RequestBody MilestoneCreateModel milestone){
         return milestoneService.updateMilestone(id, milestone);
     }
+
+    @DeleteMapping("/api/v1/milestone/{id}")
+    public String deleteMilestone(@PathVariable Long id){
+        milestoneService.deleteMilestone(id);
+        return "Milestone deleted successfully";
+    }
     @GetMapping("/api/v1/milestone")
     public List<Milestone> getMilestone(){
         return milestoneService.getMilestone();

@@ -82,4 +82,9 @@ public class MilestoneServiceImpl implements MilestoneService{
 
         return milestoneRepository.save(instance);
     }
+
+    @Override
+    public void deleteMilestone(Long id) {
+        milestoneRepository.deleteById(id);
+    }
 }

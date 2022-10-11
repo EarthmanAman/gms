@@ -12,4 +12,6 @@ public interface MilestoneService {
 
 
     public Milestone updateMilestone(Long id, MilestoneCreateModel milestone);
+
+    public void deleteMilestone(Long id);
 }
